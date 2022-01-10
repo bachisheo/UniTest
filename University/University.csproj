@@ -128,6 +128,7 @@
     <Compile Include="Forms\TeacherMenuForm.Designer.cs">
       <DependentUpon>TeacherMenuForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Tools.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResourceDB.Designer.cs">
