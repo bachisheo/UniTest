@@ -9,6 +9,7 @@ namespace University
 {
     static class Program
     {
+        //yyy
         /// <summary>
         /// Главная точка входа для приложения.
         /// </summary>
