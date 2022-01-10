@@ -36,14 +36,14 @@ namespace University
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(199, 73);
+            this.dataGridView1.Location = new System.Drawing.Point(81, 62);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(451, 304);
+            this.dataGridView1.Size = new System.Drawing.Size(569, 315);
             this.dataGridView1.TabIndex = 0;
             // 
-            // Form1
+            // TableViewForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
