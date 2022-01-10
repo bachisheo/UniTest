@@ -140,6 +140,12 @@
       <DependentUpon>Main_teacher_form.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\PgConnection.cs" />
+    <Compile Include="Forms\Study_statement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Study_statement.Designer.cs">
+      <DependentUpon>Study_statement.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\TableViewForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -183,6 +189,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Main_teacher_form.resx">
       <DependentUpon>Main_teacher_form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Study_statement.resx">
+      <DependentUpon>Study_statement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\TableViewForm.resx">
       <DependentUpon>TableViewForm.cs</DependentUpon>

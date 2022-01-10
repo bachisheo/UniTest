@@ -65,6 +65,7 @@ namespace University.Forms
             this.button3.Tag = "comboBox1.SelectedValue.ToString();";
             this.button3.Text = "Ведомости";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // Main_teacher_form
             // 

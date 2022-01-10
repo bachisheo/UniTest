@@ -30,6 +30,13 @@ namespace University.Forms
             Bank_asks form = new Bank_asks(false, 1);
             form.ShowDialog();
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            // this.Visible = false;
+            Study_statement form = new Study_statement();
+            form.ShowDialog();
+        }
     }
 
     
