@@ -22,10 +22,15 @@ namespace University.Forms
 
         {
             InitializeComponent();
-          //  dataGridView1 = new DataGridView();
+            dataGridView1 = new DataGridView();
             dataGridView1.DataSource = str;
-              //  Rows.Add(str);
+            dataGridView1.Rows.Add(str);
               //textBox1.Text = ""+add_or_change;
+        }
+
+        private void AddAndChange_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
