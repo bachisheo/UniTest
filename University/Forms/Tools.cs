@@ -15,17 +15,24 @@ namespace University
             { "firstname", "Имя" }, { "lastname", "Фамилия" }, { "patronymic", "Отчество" }, {"name", "Название"}, {"data", "Время"},
             {"discipline", "Предмет"}
         };
-        public static void FillDG(DataGridView dgv, string sql_script, string name)
+
+        public static void FillDG(DataGridView dgv, string sql_script, string name = "")
         {
-            dgv.AllowUserToAddRows = false;
-            dgv.Rows.Clear();
-            dgv.Columns.Clear();
             PgConnection.Open();
             var cmd = new NpgsqlCommand(sql_script, PgConnection.Instance);
             DataTable dt = new DataTable(name);
             dt.Load(cmd.ExecuteReader());
-            dgv.DataSource = dt;
+            FillDG(dgv, dt);
             cmd.Dispose();
+            PgConnection.Close();
+        }
+
+        public static void FillDG(DataGridView dgv, DataTable dt)
+        {
+            dgv.AllowUserToAddRows = false;
+            dgv.Rows.Clear();
+            dgv.Columns.Clear();
+            dgv.DataSource = dt;
             for (int i = 0; i < dt.Columns.Count; i++)
             {
                 string _h;
@@ -37,10 +44,7 @@ namespace University
                         dgv.Columns[i].Visible = false;
                 }
             }
-            cmd.Dispose();
-            PgConnection.Close();
         }
-
         public static DataGridViewButtonColumn AddButtonInGrid(DataGridView dgv, string name, string textForUser)
         {
             DataGridViewButtonColumn b = new DataGridViewButtonColumn();
