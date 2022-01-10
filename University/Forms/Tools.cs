@@ -8,7 +8,7 @@ namespace University
 {
     public static class Tools
     {
-        private static List<string> _stopWords = new List<string>(){ "login", "_pk", "password" };
+        private static List<string> _stopWords = new List<string>(){ "login", "_pk", "password", "id" };
 
         private static Dictionary<string, string> headers = new Dictionary<string, string>()
         {
@@ -16,11 +16,11 @@ namespace University
             {"discipline", "Предмет"}
         };
 
-        public static void FillDG(DataGridView dgv, string sql_script, string name = "")
+        public static void FillDG(DataGridView dgv, string sql_script, string table_name)
         {
             PgConnection.Open();
             var cmd = new NpgsqlCommand(sql_script, PgConnection.Instance);
-            DataTable dt = new DataTable(name);
+            DataTable dt = new DataTable(table_name);
             dt.Load(cmd.ExecuteReader());
             FillDG(dgv, dt);
             cmd.Dispose();
@@ -29,6 +29,7 @@ namespace University
 
         public static void FillDG(DataGridView dgv, DataTable dt)
         {
+            dgv.DataSource = null;
             dgv.AllowUserToAddRows = false;
             dgv.Rows.Clear();
             dgv.Columns.Clear();
@@ -55,16 +56,31 @@ namespace University
             return b;
         }
 
-        public static DataTable GetDataTable(string script, string name = "")
+        public static DataTable GetDataTableFromOneObj( string table_name, string param_name, string param_value)
+        {
+            var dt = GetDataTable("select * from " + table_name + " where " + param_name + " = " + param_value);
+            dt.TableName = table_name;
+            return dt;
+        }
+
+        public static DataTable GetDataTable(string script)
         {
             PgConnection.Open();
             var cmd1 = new NpgsqlCommand(script, PgConnection.Instance);
-            DataTable dt1 = new DataTable(name);
+            DataTable dt1 = new DataTable();
             dt1.Load(cmd1.ExecuteReader());
             cmd1.Dispose();
             PgConnection.Close();
             return dt1;
-
         }
+        public static void Execute(string script)
+        {
+            PgConnection.Open();
+            var cmd1 = new NpgsqlCommand(script, PgConnection.Instance);
+            cmd1.ExecuteReader();
+            cmd1.Dispose();
+            PgConnection.Close();
+        }
+
     }
 }
