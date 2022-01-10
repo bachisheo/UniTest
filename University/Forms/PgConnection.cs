@@ -4,7 +4,7 @@ using Npgsql;
 
 namespace University
 {
-    public class PgConnection
+    public static class PgConnection
     {
         private static NpgsqlConnection _connect;
         public static NpgsqlConnection Instance
@@ -17,11 +17,11 @@ namespace University
             }
         }
 
-        public void Open()
+        public static void Open()
         {
             Instance.Open();
         }
-        public void Close()
+        public static void Close()
         {
             Instance.Close();
         }
