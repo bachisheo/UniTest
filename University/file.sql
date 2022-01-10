@@ -650,8 +650,7 @@ $$ language plpgsql;
 /*тест
  select * from add_speciality('Приборостроение');*/
 
-  /*Добавление учебного плана*/
-drop function if exists add_study_plan(text, integer);
+/*Добавление учебного плана*/
 create or replace function add_study_plan(number_of_plan text, id_spec integer) returns integer
 as $$
 declare
@@ -676,11 +675,6 @@ select name from speciality where speciality_pk = id_spec into name_spec;
             raise EXCEPTION 'Не удалось создать учебный план, ошибка: %', SQLERRM;
 end
 $$ language plpgsql;
- 
-/*тест
-select * from add_speciality('Приборостроение');
-select * from add_study_plan('№3456', 3); 
-*/
 
 /*Добавление дисциплины*/
 create or replace function add_discipline(name1 text) returns integer as $$
@@ -700,7 +694,6 @@ $$ language plpgsql;
 select * from add_discipline('Основы программирования');
 */
 /*Добавление пользователя (студента или преподавателя)*/
-DROP FUNCTION if exists add_user(text,text,text,text,text,text);
 create or replace function add_user(firstname text, lastname text, patronymic text, us_login text, password text, user_type text) returns integer as $$
 declare
     student_id student.student_pk%TYPE;
@@ -731,11 +724,6 @@ begin
             raise EXCEPTION 'Не удалось создать пользователя % %, ошибка: %', firstname, lastname, SQLERRM;
 end
 $$ language plpgsql;
- 
-/*тест
-select * from add_user('Иван', 'Иванов', 'Иванович', 'vanya91', '1234', 'student');
-select * from add_user('Петр', 'Петров', 'Петрович', 'petr91', '1234', 'teacher');
-*/
 
 /*Добавление записи учебного плана*/
 create or replace function add_entry_in_study_plan(study_plan_pk1 integer, discipline_pk1 integer) returns integer
@@ -773,7 +761,6 @@ end
 $$ language plpgsql;
  
 /*Добавление кафедры*/
-drop function if exists add_department(text);
 create or replace function add_department(name1 text) returns integer as $$
 declare
     id_dep department.department_pk%TYPE;
@@ -786,13 +773,8 @@ begin
             raise EXCEPTION 'Не удалось создать кафедру %, ошибка: %', name1, SQLERRM;
 end
 $$ language plpgsql;
- 
-/*тест
-select * from add_department('Прикладная математика');
-*/
 
 /*Добавление темы дисциплины*/
-drop function if exists add_topic(integer, text);
 create or replace function add_topic(id_disc integer, topic_name text) returns integer as $$
 declare
     discipline_name discipline.name%TYPE;
@@ -817,7 +799,6 @@ end
 $$ language plpgsql;
 
 /*Добавление группы*/
-drop function if exists add_group(integer, text);
 create or replace function add_group(id_plan integer, number_group text) returns integer
 as $$
 declare
@@ -841,7 +822,6 @@ end
 $$ language plpgsql;
 
 /*Добавление вопроса по теме*/
-drop function if exists add_task(integer, text, text, text, text);
 create or replace function add_task(topic_id integer, question text, answers text, right_answer text, task_name text) returns integer as $$
 declare
     id_topic topic.topic_pk%TYPE;
@@ -862,7 +842,6 @@ end
 $$ language plpgsql;
 
 /*Создание шапки билета*/
-drop function if exists add_ticket(integer, integer);
 create or replace function add_ticket(id_disc integer, ticket_number integer) returns integer as $$
 declare
     discipline_name discipline.name%TYPE;
@@ -919,8 +898,7 @@ end
 $$ language plpgsql;
  
  /*Добавление учебного поручения*/
-drop function if exists add_study_statement_header(integer, integer);
-create or replace function add_study_statement_header(teacher_pk1 integer, department_pk1 integer) returns integer
+ create or replace function add_study_statement_header(teacher_pk1 integer, department_pk1 integer) returns integer
 as $$
 declare
   str text;
@@ -947,7 +925,6 @@ raise INFO 'Поручение добавлено';
 end
 $$ language plpgsql;
 /*Добавление тестового задания в билет*/
-drop function if exists add_task_in_test(integer, integer);
 create or replace function add_task_in_test(task_id integer, ticket_id integer) returns integer as $$
 declare
     discipline_id discipline.discipline_pk%TYPE;
@@ -1002,8 +979,6 @@ group_pk=group_pk1 into num;
     If FOUND then
         raise Exception 'Такая запись уже существует';
     end if;
- 
- 
     insert into entry_in_study_statement(study_statement_header_pk, discipline_pk, group_pk)
   values (study_statement_header_pk1, discipline_pk1, group_pk1)
     returning entry_in_study_statement_pk into id_entry;
@@ -1034,6 +1009,7 @@ begin
             raise EXCEPTION 'Не удалось добавить ведомость, ошибка: %', SQLERRM;
 end
 $$ language plpgsql;
+
 /*Добавить результат аттестации*/
 create or replace function add_result(gradebook_id integer, ticket_id integer, statement_id integer) returns integer
 as $$
@@ -1061,9 +1037,8 @@ begin
             raise EXCEPTION 'Не удалось добавить результат, ошибка: %', SQLERRM;
 end
 $$ language plpgsql;
+
 /*Добавить запись в результат аттестации*/
- 
-drop function if exists add_answer(integer, integer, text);
 create or replace function add_answer(result_id integer, task_in_test_id integer, stud_answer text) returns integer
 as $$
 declare
@@ -1113,7 +1088,6 @@ end
 $$ language plpgsql;
  
 /*Удаление группы*/
- 
 create or replace procedure delete_study_group(group_pk1 integer)
 as $$
 begin
