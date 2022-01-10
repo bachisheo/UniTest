@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Windows.Forms;
@@ -19,7 +20,33 @@ namespace University
             DataTable dt = new DataTable("teacher");
             dt.Load(cmd.ExecuteReader());
             dataGridView1.DataSource = dt;
-           // dataGridView1.Columns.AddRange(new DataGridViewColumn[] { new DataGridViewButtonColumn() });
+
+            //комбобоксы по таблице дисциплин
+            var cmd1 = new NpgsqlCommand("select * from discipline;", connect);
+            DataTable dt1 = new DataTable("discipline");
+            dt1.Load(cmd1.ExecuteReader());
+
+            DataGridViewComboBoxColumn c = new DataGridViewComboBoxColumn();
+            c.DataSource = dt1;
+            c.HeaderText = "Предмет";
+            c.DisplayMember = "name";
+             dataGridView1.Columns.Add(c);
+
+            //кнопки
+            DataGridViewButtonColumn b = new DataGridViewButtonColumn();
+            b.Name = "Delete";
+            b.Text = "Delete";
+            b.UseColumnTextForButtonValue = true;
+            dataGridView1.Columns.Add(b);
+
+            DataGridViewButtonColumn b1 = new DataGridViewButtonColumn();
+            b1.Name = "Change";
+            b1.Text = "Chenge";
+            b1.UseColumnTextForButtonValue = true;
+            dataGridView1.Columns.Add(b1);
+          
+
+            // dataGridView1.Columns.AddRange(new DataGridViewColumn[] { new DataGridViewButtonColumn() });
             cmd.Dispose();
             connect.Close();
         }
@@ -30,6 +57,18 @@ namespace University
             {
                 MessageBox.Show("Ты уверен?");
             }
+            else
+                 if (dataGridView1.Columns[e.ColumnIndex].Name == "Change")
+            {
+                MessageBox.Show("Дада, сейчас?");
+            }
+
+
         }
+
+        
+
+
+
     }
 }
