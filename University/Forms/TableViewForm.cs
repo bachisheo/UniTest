@@ -14,55 +14,19 @@ namespace University
         {
 
             InitializeComponent();
-           //абдейт базы
-            var connect1 = new NpgsqlConnection(ResourceDB.connection_data);
-            connect1.Open();
-            var cmd2 = new NpgsqlCommand("update student set  login = 'IRRA';", connect1);
-            cmd2.ExecuteReader();
-
-            cmd2.Dispose();
-            connect1.Close();
-
-            //todo init from file
             
-            PgConnection.Open();
-            var cmd = new NpgsqlCommand("select * from student;", PgConnection.Instance);
-            DataTable dt = new DataTable("teacher");
-            dt.Load(cmd.ExecuteReader());
-            dataGridView1.DataSource = dt;
-            dataGridView1.Columns[0].Visible = false;
-            dataGridView1.Columns[1].Visible = false;
-            dataGridView1.Columns[2].Visible = false;
-
             //комбобоксы по таблице дисциплин
-            var cmd1 = new NpgsqlCommand("select * from discipline;", PgConnection.Instance);
-            DataTable dt1 = new DataTable("discipline");
-            dt1.Load(cmd1.ExecuteReader());
-
             DataGridViewComboBoxColumn c = new DataGridViewComboBoxColumn();
-            c.DataSource = dt1;
+            c.DataSource = Tools.GetDataTable("select * from discipline;", "discipline");
             c.HeaderText = "Предмет";
             c.DisplayMember = "name";
-             dataGridView1.Columns.Add(c);
+            dataGridView1.Columns.Add(c);
 
             //кнопки
-            DataGridViewButtonColumn b = new DataGridViewButtonColumn();
-            b.Name = "Delete";
-            b.Text = "Delete";
-            b.UseColumnTextForButtonValue = true;
-            dataGridView1.Columns.Add(b);
-
-            DataGridViewButtonColumn b1 = new DataGridViewButtonColumn();
-            b1.Name = "Change";
-            b1.Text = "Change";
-            b1.UseColumnTextForButtonValue = true;
-            dataGridView1.Columns.Add(b1);
-          
+            Tools.AddButtonInGrid(dataGridView1, "Delete", "Удалить");
+            Tools.AddButtonInGrid(dataGridView1, "Change", "Изменить");
 
             // dataGridView1.Columns.AddRange(new DataGridViewColumn[] { new DataGridViewButtonColumn() });
-            cmd.Dispose();
-            cmd1.Dispose();
-            PgConnection.Close();
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
