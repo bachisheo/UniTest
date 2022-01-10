@@ -14,17 +14,28 @@ namespace University
         {
 
             InitializeComponent();
-           
+           //абдейт базы
+            var connect1 = new NpgsqlConnection(ResourceDB.connection_data);
+            connect1.Open();
+            var cmd2 = new NpgsqlCommand("update student set  login = 'IRRA';", connect1);
+            cmd2.ExecuteReader();
+
+            cmd2.Dispose();
+            connect1.Close();
+
             //todo init from file
-            var connect = new NpgsqlConnection(ResourceDB.connection_data);
-            connect.Open();
-            var cmd = new NpgsqlCommand("select * from student;", connect);
+            
+            PgConnection.Open();
+            var cmd = new NpgsqlCommand("select * from student;", PgConnection.Instance);
             DataTable dt = new DataTable("teacher");
             dt.Load(cmd.ExecuteReader());
             dataGridView1.DataSource = dt;
+            dataGridView1.Columns[0].Visible = false;
+            dataGridView1.Columns[1].Visible = false;
+            dataGridView1.Columns[2].Visible = false;
 
             //комбобоксы по таблице дисциплин
-            var cmd1 = new NpgsqlCommand("select * from discipline;", connect);
+            var cmd1 = new NpgsqlCommand("select * from discipline;", PgConnection.Instance);
             DataTable dt1 = new DataTable("discipline");
             dt1.Load(cmd1.ExecuteReader());
 
@@ -51,7 +62,7 @@ namespace University
             // dataGridView1.Columns.AddRange(new DataGridViewColumn[] { new DataGridViewButtonColumn() });
             cmd.Dispose();
             cmd1.Dispose();
-            connect.Close();
+            PgConnection.Close();
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -63,10 +74,11 @@ namespace University
             else
                  if (dataGridView1.Columns[e.ColumnIndex].Name == "Change")
             {
-               //   MessageBox.Show("Дада, сейчас?");
-          
-                AddAndChange form = new AddAndChange(true, dataGridView1.Rows[e.RowIndex]);
-                form.ShowDialog();
+               MessageBox.Show("Дада, сейчас?");
+               var a = ((DataTable)dataGridView1.DataSource).Rows;
+               var b = a[0][1];
+               //AddAndChange form = new AddAndChange(true, dataGridView1.Rows[e.RowIndex]);
+               //form.ShowDialog();
 
             }
 
