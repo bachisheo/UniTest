@@ -109,6 +109,30 @@
     <Compile Include="Forms\AddAndChange.Designer.cs">
       <DependentUpon>AddAndChange.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Main_admin_form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Main_admin_form.Designer.cs">
+      <DependentUpon>Main_admin_form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Main_first_inpute_form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Main_first_inpute_form.Designer.cs">
+      <DependentUpon>Main_first_inpute_form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Main_student_form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Main_student_form.Designer.cs">
+      <DependentUpon>Main_student_form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Main_teacher_form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Main_teacher_form.Designer.cs">
+      <DependentUpon>Main_teacher_form.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\PgConnection.cs" />
     <Compile Include="Forms\TableViewForm.cs">
       <SubType>Form</SubType>
@@ -128,6 +152,10 @@
     <Compile Include="Forms\TeacherMenuForm.Designer.cs">
       <DependentUpon>TeacherMenuForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Test_student_form.cs" />
+    <Compile Include="Forms\Test_student_form.Designer.cs">
+      <DependentUpon>Test_student_form.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Tools.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -138,6 +166,12 @@
     </Compile>
     <EmbeddedResource Include="Forms\AddAndChange.resx">
       <DependentUpon>AddAndChange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Main_admin_form.resx">
+      <DependentUpon>Main_admin_form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Main_first_inpute_form.resx">
+      <DependentUpon>Main_first_inpute_form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\TableViewForm.resx">
       <DependentUpon>TableViewForm.cs</DependentUpon>
