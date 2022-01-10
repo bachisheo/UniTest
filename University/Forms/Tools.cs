@@ -13,7 +13,7 @@ namespace University
         private static Dictionary<string, string> headers = new Dictionary<string, string>()
         {
             { "firstname", "Имя" }, { "lastname", "Фамилия" }, { "patronymic", "Отчество" }, {"name", "Название"}, {"data", "Время"},
-            {"discipline", "Предмет"}
+            {"discipline", "Предмет"},  {"number", "Номер"}
         };
 
         public static void FillDG(DataGridView dgv, string sql_script, string table_name)
