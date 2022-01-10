@@ -4,6 +4,8 @@ using System.Data;
 using System.IO;
 using System.Windows.Forms;
 using Npgsql;
+using University.Forms;
+
 namespace University
 {
     public partial class TableViewForm : Form
@@ -41,13 +43,14 @@ namespace University
 
             DataGridViewButtonColumn b1 = new DataGridViewButtonColumn();
             b1.Name = "Change";
-            b1.Text = "Chenge";
+            b1.Text = "Change";
             b1.UseColumnTextForButtonValue = true;
             dataGridView1.Columns.Add(b1);
           
 
             // dataGridView1.Columns.AddRange(new DataGridViewColumn[] { new DataGridViewButtonColumn() });
             cmd.Dispose();
+            cmd1.Dispose();
             connect.Close();
         }
 
@@ -60,15 +63,19 @@ namespace University
             else
                  if (dataGridView1.Columns[e.ColumnIndex].Name == "Change")
             {
-                MessageBox.Show("Дада, сейчас?");
+               //   MessageBox.Show("Дада, сейчас?");
+          
+                AddAndChange form = new AddAndChange(true, dataGridView1.Rows[e.RowIndex]);
+                form.ShowDialog();
+
             }
 
 
         }
 
-        
+        private void dataGridView1_MouseDown(object sender, MouseEventArgs e)
+        {
 
-
-
+        }
     }
 }
