@@ -19,8 +19,17 @@ namespace University
             DataTable dt = new DataTable("teacher");
             dt.Load(cmd.ExecuteReader());
             dataGridView1.DataSource = dt;
+           // dataGridView1.Columns.AddRange(new DataGridViewColumn[] { new DataGridViewButtonColumn() });
             cmd.Dispose();
             connect.Close();
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridView1.Columns[e.ColumnIndex].Name == "Delete")
+            {
+                MessageBox.Show("Ты уверен?");
+            }
         }
     }
 }
