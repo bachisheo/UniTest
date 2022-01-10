@@ -17,6 +17,7 @@ namespace University
         };
         public static void FillDG(DataGridView dgv, string sql_script, string name)
         {
+            dgv.AllowUserToAddRows = false;
             dgv.Rows.Clear();
             dgv.Columns.Clear();
             PgConnection.Open();
