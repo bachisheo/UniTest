@@ -42,8 +42,8 @@ namespace University
                MessageBox.Show("Дада, сейчас?");
                var a = ((DataTable)dataGridView1.DataSource).Rows;
                var b = a[0][1];
-               //AddAndChange form = new AddAndChange(true, dataGridView1.Rows[e.RowIndex]);
-               //form.ShowDialog();
+               AddAndChange form = new AddAndChange(true, dataGridView1.Rows[e.RowIndex]);
+               form.ShowDialog();
 
             }
 
