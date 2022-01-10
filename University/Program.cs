@@ -9,7 +9,6 @@ namespace University
 {
     static class Program
     {
-        //yyy
         /// <summary>
         /// Главная точка входа для приложения.
         /// </summary>
@@ -18,7 +17,7 @@ namespace University
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new TeacherMenuForm());
+            Application.Run(new TableViewForm());
         }
     }
 }
