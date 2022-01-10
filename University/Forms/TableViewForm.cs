@@ -14,13 +14,14 @@ namespace University
         {
 
             InitializeComponent();
+            Tools.FillDG(dataGridView1, "select * from student;", "teacher");
             
             //комбобоксы по таблице дисциплин
             DataGridViewComboBoxColumn c = new DataGridViewComboBoxColumn();
             c.DataSource = Tools.GetDataTable("select * from discipline;", "discipline");
             c.HeaderText = "Предмет";
             c.DisplayMember = "name";
-            dataGridView1.Columns.Add(c);
+             dataGridView1.Columns.Add(c);
 
             //кнопки
             Tools.AddButtonInGrid(dataGridView1, "Delete", "Удалить");
