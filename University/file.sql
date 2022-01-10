@@ -6,24 +6,8 @@ Database: PostgreSQL 12
 */
 
 -- Create functions section -------------------------------------------------
-
-CREATE FUNCTION "Function1"()
-  LANGUAGE sql
-  VOLATILE
-AS
-$$
-create or replace function set_time_trigger() returns trigger
-as $$
-begin
-        update "statement_header" set "data" = curdate() where "statement_header_pk" = NEW."statement_header_pk";
-        return NEW;
-    end
-$$ language plpgsql;
-
-$$
-;
-
--- Create tables section -------------------------------------------------
+DROP SCHEMA if exists public CASCADE;
+CREATE SCHEMA public;
 
 -- Table student
 
@@ -1231,8 +1215,3 @@ select * from add_entry_in_study_statement(1, 1, 1);
 select * from add_statement_header('12', 1);
 select * from add_result(1, 1, 1);
 select * from add_answer(1, 1, '1');
-
-
-
-
-
