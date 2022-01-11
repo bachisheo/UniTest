@@ -14,10 +14,12 @@ namespace University.Forms
     public partial class Bank_asks : Form
     {
         String name_tab;
-        public Bank_asks(bool flag, int id)
+        private bool _is_asks;
+        public Bank_asks(bool is_asks, int id)
         {
+            _is_asks = is_asks;
             InitializeComponent();
-            if (flag)
+            if (_is_asks)
             {
                 this.Text = "Банк аттестационных вопросов";
                 button1.Text = "Добавить новый вопрос";
@@ -37,6 +39,7 @@ namespace University.Forms
             //кнопки
             Tools.AddButtonInGrid(dataGridView1, "Удаление", "Удалить");
             Tools.AddButtonInGrid(dataGridView1, "Изменение", "Изменить");
+            MyRefresh();
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -50,19 +53,19 @@ namespace University.Forms
                 {
                     Tools.Execute("delete from " + name_tab + " where " + name_tab + "_pk = " + Tools.GetId(dataGridView1, e.RowIndex));
                     MyRefresh();
-
                 }
 
             }
             else
                  if (dataGridView1.Columns[e.ColumnIndex].Name == "Change")
             {
-                MessageBox.Show("Дада, сейчас?");
-                var a = ((DataTable)dataGridView1.DataSource).Rows;
-                var b = a[0][0];
-                MessageBox.Show("Ты уверен? " + b);
-                //AddAndChange form = new AddAndChange(true, b.ToString());
-                // form.ShowDialog();
+                {
+                    var add = new AddAndChange(true, dataGridView1.DataSource as DataTable,
+                        Tools.GetId(dataGridView1, e.RowIndex));
+                    add.ShowDialog();
+                    MyRefresh();
+                    return;
+                }
 
             }
 
@@ -71,9 +74,15 @@ namespace University.Forms
 
         private void button1_Click(object sender, EventArgs e)
         {
-           
-        
-    }
+            Random rand = new Random();
+            rand.Next();
+            //add_task(topic_id integer, question text, answers text, right_answer text, task_name text)
+            var res = Tools.executeFunction(" select * from add_task(1, '','', '', '');");
+
+            var add = new AddAndChange(false, dataGridView1.DataSource as DataTable, res);
+            add.ShowDialog();
+            MyRefresh();
+        }
 
         public void MyRefresh()
         {
