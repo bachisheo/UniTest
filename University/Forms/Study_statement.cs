@@ -82,12 +82,15 @@ namespace University.Forms
                        int n = Tools.GetId(dataGridView1, e.RowIndex);
   
 
-                          NpgsqlCommand cmd = new NpgsqlCommand("select * from result where statement_header_pk = "+Tools.GetId(dataGridView1, e.RowIndex)+";", PgConnection.Instance);
-                          dt.Load(cmd.ExecuteReader());
+                        NpgsqlCommand cmd = new NpgsqlCommand("select * from result where statement_header_pk = "+Tools.GetId(dataGridView1, e.RowIndex)+";", PgConnection.Instance);
+                        dt.Load(cmd.ExecuteReader());
                         dat.DataSource = dt;
-                        
 
-                 
+                        var a = ((DataTable)dat.DataSource).Rows;
+                        var b = a[0][1];
+                        dat.Rows.Add(dt);
+                        //textBox1.Text = ""+add_or_change; 
+
                         Microsoft.Office.Interop.Excel.Application ExcelApp = new Microsoft.Office.Interop.Excel.Application();
                         Microsoft.Office.Interop.Excel.Workbook ExcelWorkBook;
                         Microsoft.Office.Interop.Excel.Worksheet ExcelWorkSheet;
