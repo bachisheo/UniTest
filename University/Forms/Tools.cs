@@ -105,8 +105,8 @@ namespace University
 
             for (int i = 0; i < dt.Columns.Count; i++)
             {
-                if (dt.Columns[i].ColumnName == "id")
-                    return (int)dt.Rows[entry_number][i];
+                if (dt.Columns[i].ColumnName == "id" || dt.Columns[i].ColumnName == dt.TableName + "_pk") ;
+                return (int)dt.Rows[entry_number][i];
             }
             throw new Exception("Запись не существует!");
         }
