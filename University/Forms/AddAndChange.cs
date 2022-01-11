@@ -17,6 +17,7 @@ namespace University.Forms
         private bool _isEdit;
         private int _id;
         private string _table_name;
+        private string _view = "_view";
         public AddAndChange()
         {
             InitializeComponent();
@@ -105,7 +106,6 @@ namespace University.Forms
                 this.Close();
             }
         }
-
         private void dataGridView1_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
             CancelButton.Enabled = true;

@@ -27,7 +27,7 @@ namespace University.Forms
 
             {
                 label1.Text = "Аттестации";
-                Tools.FillDG(dataGridView1, "SELECT * FROM statement_header a1  inner JOIN study_statement_header a2 on a1.statement_header_pk = a2.study_statement_header_pk WHERE a2.teacher_pk = " + id+";", "statement_header");
+                Tools.FillDG(dataGridView1, "SELECT * FROM statement_header  a1  inner JOIN study_statement_header a2 on a1.statement_header_pk = a2.study_statement_header_pk WHERE a2.teacher_pk = " + id+";", "statement_header");
                 name_tab = "statement_header";
 
             }
