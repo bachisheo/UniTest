@@ -30,7 +30,7 @@ namespace University.Forms
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBoxDisc = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -47,11 +47,11 @@ namespace University.Forms
             // 
             // comboBox1
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(10, 34);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(129, 24);
-            this.comboBox1.TabIndex = 1;
+            this.comboBoxDisc.FormattingEnabled = true;
+            this.comboBoxDisc.Location = new System.Drawing.Point(10, 34);
+            this.comboBoxDisc.Name = "comboBoxDisc";
+            this.comboBoxDisc.Size = new System.Drawing.Size(129, 24);
+            this.comboBoxDisc.TabIndex = 1;
             // 
             // button1
             // 
@@ -69,7 +69,7 @@ namespace University.Forms
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.comboBoxDisc);
             this.Controls.Add(this.dataGridView1);
             this.Name = "Main_student_form";
             this.Text = "Main_student_form";
@@ -81,7 +81,7 @@ namespace University.Forms
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBoxDisc;
         private System.Windows.Forms.Button button1;
     }
 }
