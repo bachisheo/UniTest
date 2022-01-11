@@ -93,6 +93,7 @@ namespace University.Forms
             this.Controls.Add(this.LoginBox);
             this.Name = "Main_first_inpute_form";
             this.Text = "Main_first_inpute_form";
+            this.Load += new System.EventHandler(this.Main_first_inpute_form_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

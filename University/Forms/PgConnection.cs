@@ -6,6 +6,10 @@ namespace University
 {
     public static class PgConnection
     {
+        public static string user_type;
+        public static int id;
+        private static bool _is_open = false;
+
         private static NpgsqlConnection _connect;
         public static NpgsqlConnection Instance
         {
@@ -19,11 +23,19 @@ namespace University
 
         public static void Open()
         {
-            Instance.Open();
+            if (!_is_open)
+            {
+                Instance.Open();
+                _is_open = true;
+            }
         }
         public static void Close()
         {
-            Instance.Close();
+            if (_is_open)
+            {
+                Instance.Close();
+                _is_open = false;
+            }
         }
     }
 }
