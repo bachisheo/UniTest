@@ -17,7 +17,9 @@ namespace University.Forms
             InitializeComponent();
             Tools.FillDG(dataGridView1, "SELECT * FROM statement_header a1  inner JOIN study_statement_header a2 on a1.statement_header_pk = a2.study_statement_header_pk WHERE a2.teacher_pk = " + id + ";", "");
 
-
+            //кнопки
+            Tools.AddButtonInGrid(dataGridView1, "Delete", "Удалить");
+            Tools.AddButtonInGrid(dataGridView1, "Change", "Изменить");
         }
     }
 }

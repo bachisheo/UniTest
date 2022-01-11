@@ -23,25 +23,40 @@ namespace University.Forms
 
             String log = LoginBox.Text;
             String pas = PassBox.Text;
-
             /*
             PgConnection.Open();
             var cmd1 = new NpgsqlCommand("select password from student where login = " + log + ";", PgConnection.Instance);
-            cmd1.Connection = PgConnection.Instance;
-            cmd1.CommandType = CommandType.Text;
-            cmd1.CommandText = "select password from student where login = " + log + ";";
-            NpgsqlDataReader dr = cmd1.ExecuteReader();
 
-            if (dr.HasRows)
+            DataTable dt1 = new DataTable();
+
+
+
+            dt1.Load(cmd1.ExecuteReader());
+            if (dt1.Select("Colum1=" + pas) != null)
             {
-                DataTable dt = new DataTable();
-                dt.Load(dr);
-
-            
+                Main_student_form form = new Main_student_form();
+                form.ShowDialog();
             }
             cmd1.Dispose();
             PgConnection.Close();
             */
+            /* 
+             PgConnection.Open();
+             var cmd1 = new NpgsqlCommand("select password from student where login = " + log + ";", PgConnection.Instance);
+             cmd1.Connection = PgConnection.Instance;
+             cmd1.CommandType = CommandType.Text;
+             cmd1.CommandText = "select password from student where login = " + log + ";";
+            // NpgsqlDataReader dr = cmd1.ExecuteReader();
+
+             if (dr.HasRows)
+             {
+                 DataTable dt = new DataTable();
+                 dt.Load(dr);
+
+             }
+             cmd1.Dispose();
+             PgConnection.Close();
+             */
             /*    
                 PgConnection.Open();
                 var cmd1 = new NpgsqlCommand("select password from student where login = "+log+";", PgConnection.Instance);

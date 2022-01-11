@@ -20,6 +20,7 @@ namespace University.Forms
         public AddAndChange()
         {
             InitializeComponent();
+           
         }
         public AddAndChange(DataTable dt)
         {
