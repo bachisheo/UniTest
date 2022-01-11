@@ -20,6 +20,26 @@ namespace University.Forms
         {
             InitializeComponent();
         }
+        public AddAndChange(DataTable dt)
+        {
+            InitializeComponent();
+            _table_name = dt.TableName.Replace("_view", "");
+            _isEdit = false;
+
+            var _dt = dt;
+            
+            Tools.FillDG(dataGridView1, _dt);
+         
+            for (int i = 0 ; i < dataGridView1.Rows.Count - 1; i++)
+            {
+                dataGridView1.Rows[i].Visible = false;
+            }
+            _dt.Rows.Add(1);
+            dataGridView1.Rows[dataGridView1.Rows.Count - 1].Selected = true;
+
+            // dataGridView1.Rows.Add(1);
+            ActionButton.Text = "Добавить";
+        }
 
         public void MyRefresh()
         {
@@ -28,6 +48,8 @@ namespace University.Forms
             CancelButton.Enabled = false;
             ActionButton.Enabled = false;
         }
+        
+
         public AddAndChange(bool isEdit, DataTable dt, int id)
         {
             _id = id;
@@ -70,10 +92,19 @@ namespace University.Forms
                 }
                 sb.Append(" where " + _table_name + "_pk = " + _id.ToString() + ";");
             }
+            else
+            {
+                Adding();
+                return;
+            }
             Tools.Execute(sb.ToString());
             MyRefresh();
         }
 
+        private void Adding()
+        {
+
+        }
         private void CancelButton_Click(object sender, EventArgs e)
         {
             MyRefresh();

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
@@ -80,6 +81,17 @@ namespace University
             cmd1.ExecuteReader();
             cmd1.Dispose();
             PgConnection.Close();
+        }
+        public static int GetId(DataGridView dgv, int entry_number)
+        {
+            var dt = dgv.DataSource as DataTable;
+
+            for (int i = 0; i < dt.Columns.Count; i++)
+            {
+                if (dt.Columns[i].ColumnName == "id")
+                    return (int)dt.Rows[entry_number][i];
+            }
+            throw new Exception("Запись не существует!");
         }
 
     }
