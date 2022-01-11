@@ -34,7 +34,7 @@ namespace University.Forms
         private void button3_Click(object sender, EventArgs e)
         {
             // this.Visible = false;
-            Study_statement form = new Study_statement();
+            Study_statement form = new Study_statement(1);
             form.ShowDialog();
         }
     }

@@ -103,6 +103,7 @@
     <Compile Include="AuthorizeForm.Designer.cs">
       <DependentUpon>AuthorizeForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Active_user.cs" />
     <Compile Include="Forms\AddAndChange.cs">
       <SubType>Form</SubType>
     </Compile>

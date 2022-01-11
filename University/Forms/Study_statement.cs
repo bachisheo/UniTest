@@ -12,9 +12,12 @@ namespace University.Forms
 {
     public partial class Study_statement : Form
     {
-        public Study_statement()
+        public Study_statement(int id)
         {
             InitializeComponent();
+            Tools.FillDG(dataGridView1, "SELECT * FROM statement_header a1  inner JOIN study_statement_header a2 on a1.statement_header_pk = a2.study_statement_header_pk WHERE a2.teacher_pk = " + id + ";", "");
+
+
         }
     }
 }
