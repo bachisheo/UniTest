@@ -36,6 +36,7 @@ namespace University.Forms
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(-5, 51);
             this.dataGridView1.Name = "dataGridView1";
@@ -45,9 +46,9 @@ namespace University.Forms
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(12, 12);
+            this.button1.Location = new System.Drawing.Point(254, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(214, 33);
+            this.button1.Size = new System.Drawing.Size(269, 43);
             this.button1.TabIndex = 1;
             this.button1.Text = "Добавить новую ведомость";
             this.button1.UseVisualStyleBackColor = true;

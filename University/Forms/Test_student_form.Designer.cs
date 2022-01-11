@@ -29,10 +29,17 @@ namespace University.Forms
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // Test_student_form
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Test_student_form";
+            this.Name = "Test_student_form";
+            this.Text = "Тестирование";
+            this.ResumeLayout(false);
+
         }
 
         #endregion

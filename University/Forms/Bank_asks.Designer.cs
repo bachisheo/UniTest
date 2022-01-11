@@ -45,6 +45,7 @@ namespace University.Forms
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(3, 46);
             this.dataGridView1.Name = "dataGridView1";
@@ -56,9 +57,9 @@ namespace University.Forms
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(3, 9);
+            this.button1.Location = new System.Drawing.Point(212, 3);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(216, 34);
+            this.button1.Size = new System.Drawing.Size(342, 37);
             this.button1.TabIndex = 2;
             this.button1.Text = "Добавить";
             this.button1.UseVisualStyleBackColor = true;

@@ -28,8 +28,8 @@ namespace University
             dataGridView1.Columns.Add(c);
 
             //кнопки
-            Tools.AddButtonInGrid(dataGridView1, "Delete", "Удалить");
-            Tools.AddButtonInGrid(dataGridView1, "Change", "Изменить");
+            Tools.AddButtonInGrid(dataGridView1, "Удаление", "Удалить");
+            Tools.AddButtonInGrid(dataGridView1, "Изменение", "Изменить");
 
             // dataGridView1.Columns.AddRange(new DataGridViewColumn[] { new DataGridViewButtonColumn() });
         }
