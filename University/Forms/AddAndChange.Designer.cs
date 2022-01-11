@@ -38,17 +38,17 @@ namespace University.Forms
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(50, 54);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 12);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(698, 130);
+            this.dataGridView1.Size = new System.Drawing.Size(776, 225);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dataGridView1_CellBeginEdit);
             // 
             // ActionButton
             // 
-            this.ActionButton.Location = new System.Drawing.Point(426, 243);
+            this.ActionButton.Location = new System.Drawing.Point(458, 252);
             this.ActionButton.Name = "ActionButton";
             this.ActionButton.Size = new System.Drawing.Size(136, 53);
             this.ActionButton.TabIndex = 1;
@@ -58,7 +58,7 @@ namespace University.Forms
             // 
             // CancelButton
             // 
-            this.CancelButton.Location = new System.Drawing.Point(584, 243);
+            this.CancelButton.Location = new System.Drawing.Point(628, 252);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(136, 53);
             this.CancelButton.TabIndex = 2;
@@ -75,7 +75,6 @@ namespace University.Forms
             this.Controls.Add(this.ActionButton);
             this.Controls.Add(this.dataGridView1);
             this.Name = "AddAndChange";
-            this.Text = "AddAndChange";
             this.Load += new System.EventHandler(this.AddAndChange_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
