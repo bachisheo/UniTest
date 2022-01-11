@@ -17,6 +17,7 @@ namespace University.Forms
         private bool _isEdit;
         private int _id;
         private string _table_name;
+        private string _view = "_view";
         public AddAndChange()
         {
             InitializeComponent();
