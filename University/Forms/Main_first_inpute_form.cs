@@ -24,74 +24,81 @@ namespace University.Forms
 
             String log = LoginBox.Text;
             String pas = PassBox.Text;
+            DataTable dt1 = new DataTable();
 
-            PgConnection.Open();
-            var cmd1 = new NpgsqlCommand("select password from student where login = '" + log + "';", PgConnection.Instance);
-            var res = cmd1.ExecuteReader();
-            if (res.HasRows)
-            {
-                DataTable dt1 = new DataTable();
-                dt1.Load(res);
-                cmd1.Dispose();
-                PgConnection.Close();
-                if (dt1.Rows[0][0].ToString() == pas)
-                {
-                    PgConnection.id = (int)Tools.GetDataTable("select student_pk from student where login = '" + log + "';").Rows[0][0];
-                    PgConnection.user_type = "student";
-                    Main_student_form form = new Main_student_form();
-                    form.ShowDialog();
-                }
-            }
-            else
+            if (log.Length > 0)
             {
                 PgConnection.Open();
-                cmd1 = new NpgsqlCommand("select password from teacher where login = '" + log + "';",
+                var cmd1 = new NpgsqlCommand("select password from student where login = '" + log + "';",
                     PgConnection.Instance);
-                res = cmd1.ExecuteReader();
+                var res = cmd1.ExecuteReader();
+                
                 if (res.HasRows)
                 {
-                    DataTable dt1 = new DataTable();
                     dt1.Load(res);
                     cmd1.Dispose();
                     PgConnection.Close();
                     if (dt1.Rows[0][0].ToString() == pas)
                     {
                         PgConnection.id =
-                            (int)Tools.GetDataTable("select teacher_pk from teacher where login = '" + log + "';")
+                            (int)Tools.GetDataTable("select student_pk from student where login = '" + log + "';")
                                 .Rows[0][0];
-                        PgConnection.user_type = "teacher";
-                        Main_teacher_form form = new Main_teacher_form();
+                        PgConnection.user_type = "student";
+                        Main_student_form form = new Main_student_form();
                         form.ShowDialog();
                     }
                 }
                 else
                 {
-
-
+                    res.Close();
                     PgConnection.Open();
-                    cmd1 = new NpgsqlCommand("select password from admin where login = '" + log + "';",
+                    var cmd2 = new NpgsqlCommand("select password from teacher where login = '" + log + "';",
                         PgConnection.Instance);
-                    res = cmd1.ExecuteReader();
+                    res = cmd2.ExecuteReader();
                     if (res.HasRows)
                     {
-                        DataTable dt1 = new DataTable();
                         dt1.Load(res);
-                        cmd1.Dispose();
+                        cmd2.Dispose();
                         PgConnection.Close();
                         if (dt1.Rows[0][0].ToString() == pas)
                         {
                             PgConnection.id =
-                                (int)Tools.GetDataTable("select admin_pk from admin where login = '" + log + "';")
+                                (int)Tools.GetDataTable("select teacher_pk from teacher where login = '" + log + "';")
                                     .Rows[0][0];
-                            PgConnection.user_type = "admin";
-                            Main_admin_form form = new Main_admin_form(this);
+                            PgConnection.user_type = "teacher";
+                            Main_teacher_form form = new Main_teacher_form();
                             form.ShowDialog();
                         }
                     }
+                    else
+                    {
 
-                    cmd1.Dispose();
-                    PgConnection.Close();
-                    MessageBox.Show("Неверный логин или пароль!", "Ошибка", MessageBoxButtons.OKCancel);
+                        res.Close();
+
+                        PgConnection.Open();
+                        var cmd3 = new NpgsqlCommand("select password from admin where login = '" + log + "';",
+                            PgConnection.Instance);
+                        res = cmd3.ExecuteReader();
+                        if (res.HasRows)
+                        {
+                            dt1.Load(res);
+                            cmd3.Dispose();
+                            PgConnection.Close();
+                            if (dt1.Rows[0][0].ToString() == pas)
+                            {
+                                PgConnection.id =
+                                    (int)Tools.GetDataTable("select admin_pk from admin where login = '" + log + "';")
+                                        .Rows[0][0];
+                                PgConnection.user_type = "admin";
+                                Main_admin_form form = new Main_admin_form(this);
+                                form.ShowDialog();
+                            }
+                        }
+
+                        cmd3.Dispose();
+                        PgConnection.Close();
+                        MessageBox.Show("Неверный логин или пароль!", "Ошибка", MessageBoxButtons.OKCancel);
+                    }
                 }
             }
 
