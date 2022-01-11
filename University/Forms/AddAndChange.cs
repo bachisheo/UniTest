@@ -101,11 +101,10 @@ namespace University.Forms
                 MyRefresh();
             else
             {
-                Tools.Delete("student", "student_pk", _id.ToString());
+                Tools.Delete(_table_name, _table_name + "_pk", _id.ToString());
                 this.Close();
             }
         }
-
         private void dataGridView1_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
             CancelButton.Enabled = true;

@@ -24,5 +24,11 @@ namespace University.Forms
         {
           //  exit.Visible = true;
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            TableViewForm form = new TableViewForm();
+            form.ShowDialog();
+        }
     }
 }
