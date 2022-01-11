@@ -14,14 +14,16 @@ namespace University.Forms
     public partial class Bank_asks : Form
     {
         String name_tab;
-        public Bank_asks(bool flag, int id)
+        public Bank_asks(bool _is_bank, int id)
         {
+            PgConnection.id = id;
+            PgConnection.user_type = "teacher";
             InitializeComponent();
-            if (flag)
+            if (_is_bank)
             {
                 label1.Text = "Банк заданий";
-                Tools.FillDG(dataGridView1, "SELECT * FROM task a1 inner JOIN topic a2 on a1.task_pk = a2.topic_pk inner JOIN discipline a3 on a3.discipline_pk = a2.topic_pk inner JOIN entry_in_study_statement a4 on a3.discipline_pk = a4.entry_in_study_statement_pk inner JOIN study_statement_header a5 on a5.study_statement_header_pk = a4.entry_in_study_statement_pk WHERE a5.teacher_pk =" +  id+";", "task");
-                name_tab = " task";
+                Tools.FillDG(dataGridView1, "SELECT * FROM task a1 inner JOIN topic a2 on a1.task_pk = a2.topic_pk inner JOIN discipline a3 on a3.discipline_pk = a2.topic_pk inner JOIN entry_in_study_statement a4 on a3.discipline_pk = a4.entry_in_study_statement_pk inner JOIN study_statement_header a5 on a5.study_statement_header_pk = a4.entry_in_study_statement_pk WHERE a5.teacher_pk =" +  id + ";", "task");
+                name_tab = "task";
             }
             else
 
@@ -46,22 +48,18 @@ namespace University.Forms
                            MessageBoxButtons.OKCancel);
                 if (result == DialogResult.OK)
                 {
-                    Tools.Execute("delete from " + name_tab + " where " + name_tab + "_pk = " + Tools.GetId(dataGridView1, e.RowIndex));
+                    Tools.Execute("delete from " + name_tab + " where " + name_tab + "_pk = " + Tools.GetId(dataGridView1, e.RowIndex) + ";");
                     MyRefresh();
-
                 }
 
             }
             else
                  if (dataGridView1.Columns[e.ColumnIndex].Name == "Change")
             {
-                MessageBox.Show("Дада, сейчас?");
-                var a = ((DataTable)dataGridView1.DataSource).Rows;
-                var b = a[0][0];
-                MessageBox.Show("Ты уверен? " + b);
-                //AddAndChange form = new AddAndChange(true, b.ToString());
-                // form.ShowDialog();
-
+                var add = new AddAndChange(true, dataGridView1.DataSource as DataTable,
+                    Tools.GetId(dataGridView1, e.RowIndex));
+                add.ShowDialog();
+                MyRefresh();
             }
 
 
