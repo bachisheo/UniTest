@@ -70,26 +70,12 @@ namespace University.Forms
                 case "Экспорт":
                     {
 
-                        // MessageBox.Show("Дада, сейчас?");
-                        //  var add = new AddAndChange(true, dataGridView1.DataSource as DataTable,
-                        //      Tools.GetId(dataGridView1, e.RowIndex));
-                       
                         DataTable dt = new DataTable();
                         DataGridView dat = new DataGridView();
                         PgConnection.Open();
-
-
-                       int n = Tools.GetId(dataGridView1, e.RowIndex);
-  
-
-                        NpgsqlCommand cmd = new NpgsqlCommand("select * from result where statement_header_pk = "+Tools.GetId(dataGridView1, e.RowIndex)+";", PgConnection.Instance);
+                        NpgsqlCommand cmd = new NpgsqlCommand("select * from result where statement_header_pk = " + Tools.GetId(dataGridView1, e.RowIndex)+";", PgConnection.Instance);
                         dt.Load(cmd.ExecuteReader());
                         dat.DataSource = dt;
-
-                        var a = ((DataTable)dat.DataSource).Rows;
-                        var b = a[0][1];
-                        dat.Rows.Add(dt);
-                        //textBox1.Text = ""+add_or_change; 
 
                         Microsoft.Office.Interop.Excel.Application ExcelApp = new Microsoft.Office.Interop.Excel.Application();
                         Microsoft.Office.Interop.Excel.Workbook ExcelWorkBook;
@@ -98,17 +84,27 @@ namespace University.Forms
                         ExcelWorkBook = ExcelApp.Workbooks.Add(System.Reflection.Missing.Value);
                         //Таблица.
                         ExcelWorkSheet = (Microsoft.Office.Interop.Excel.Worksheet)ExcelWorkBook.Worksheets.get_Item(1);
-                        /*
-                        for (int j = 0; j < dataGridView1.ColumnCount; j++)
+
+                        for (int j = 0; j < dt.Columns.Count; j++)
                         {
-                            ExcelApp.Cells[0, j + 1] = "";
-                                }
-                        */
-                        for (int i = 0; i < dat.Rows.Count; i++)
-                        {
-                            for (int j = 0; j < dat.ColumnCount; j++)
+                            
+                            for (int i = 0; i < dt.Rows.Count; i++)
                             {
-                                ExcelApp.Cells[i + 1, j + 1] = dat.Rows[i].Cells[j].Value.ToString();
+                                string result = "-";
+                                switch (dt.Columns[j].ColumnName)
+                                {
+                                    case "student_pk":
+                                    {
+                                        var dst = Tools.GetDataTable(
+                                            "select  lastname, firstname, lastname patronymic from student where student_pk =" +
+                                            dt.Rows[i][j] + ";");
+                                        result = dst.Rows[0][0].ToString() + " " + dst.Rows[0][1].ToString() + " " +
+                                                 dst.Rows[0][2].ToString();
+                                        break;
+                                    }
+
+                                }
+                                ExcelApp.Cells[i + 1, j + 1] = result;
                             }
                         }
                         //Вызываем нашу созданную эксельку.
