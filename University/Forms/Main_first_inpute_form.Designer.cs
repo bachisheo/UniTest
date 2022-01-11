@@ -38,7 +38,7 @@ namespace University.Forms
             // 
             // LoginBox
             // 
-            this.LoginBox.Location = new System.Drawing.Point(286, 134);
+            this.LoginBox.Location = new System.Drawing.Point(286, 94);
             this.LoginBox.Multiline = true;
             this.LoginBox.Name = "LoginBox";
             this.LoginBox.Size = new System.Drawing.Size(234, 50);
@@ -46,7 +46,7 @@ namespace University.Forms
             // 
             // PassBox
             // 
-            this.PassBox.Location = new System.Drawing.Point(286, 211);
+            this.PassBox.Location = new System.Drawing.Point(286, 171);
             this.PassBox.Multiline = true;
             this.PassBox.Name = "PassBox";
             this.PassBox.PasswordChar = '*';
@@ -56,24 +56,26 @@ namespace University.Forms
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(185, 149);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(194, 113);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(57, 17);
+            this.label1.Size = new System.Drawing.Size(67, 18);
             this.label1.TabIndex = 2;
             this.label1.Text = "ЛОГИН";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(185, 224);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Location = new System.Drawing.Point(194, 188);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(66, 17);
+            this.label2.Size = new System.Drawing.Size(77, 18);
             this.label2.TabIndex = 3;
             this.label2.Text = "ПАРОЛЬ";
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(286, 298);
+            this.button1.Location = new System.Drawing.Point(286, 277);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(237, 56);
             this.button1.TabIndex = 4;
@@ -92,8 +94,7 @@ namespace University.Forms
             this.Controls.Add(this.PassBox);
             this.Controls.Add(this.LoginBox);
             this.Name = "Main_first_inpute_form";
-            this.Text = "Main_first_inpute_form";
-            this.Load += new System.EventHandler(this.Main_first_inpute_form_Load);
+            this.Text = "Вход";
             this.ResumeLayout(false);
             this.PerformLayout();
 

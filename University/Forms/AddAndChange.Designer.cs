@@ -52,7 +52,7 @@ namespace University.Forms
             this.ActionButton.Name = "ActionButton";
             this.ActionButton.Size = new System.Drawing.Size(136, 53);
             this.ActionButton.TabIndex = 1;
-            this.ActionButton.Text = "button1";
+            this.ActionButton.Text = "Добавить";
             this.ActionButton.UseVisualStyleBackColor = true;
             this.ActionButton.Click += new System.EventHandler(this.ActionButton_Click);
             // 
@@ -70,7 +70,7 @@ namespace University.Forms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 317);
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.ActionButton);
             this.Controls.Add(this.dataGridView1);

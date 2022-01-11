@@ -30,5 +30,10 @@ namespace University.Forms
             TableViewForm form = new TableViewForm();
             form.ShowDialog();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

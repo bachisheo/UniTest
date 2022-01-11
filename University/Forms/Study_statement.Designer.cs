@@ -36,20 +36,21 @@ namespace University.Forms
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(-5, 21);
+            this.dataGridView1.Location = new System.Drawing.Point(-5, 51);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(793, 351);
+            this.dataGridView1.Size = new System.Drawing.Size(803, 399);
             this.dataGridView1.TabIndex = 0;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(608, 388);
+            this.button1.Location = new System.Drawing.Point(254, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(142, 33);
+            this.button1.Size = new System.Drawing.Size(269, 43);
             this.button1.TabIndex = 1;
-            this.button1.Text = "Добавить";
+            this.button1.Text = "Добавить новую ведомость";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -61,7 +62,7 @@ namespace University.Forms
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dataGridView1);
             this.Name = "Study_statement";
-            this.Text = "Study_statement";
+            this.Text = "Экзаменационные ведомости";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 

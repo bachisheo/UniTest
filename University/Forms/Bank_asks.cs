@@ -14,29 +14,29 @@ namespace University.Forms
     public partial class Bank_asks : Form
     {
         String name_tab;
-        public Bank_asks(bool _is_bank, int id)
+        public Bank_asks(bool flag, int id)
         {
-            PgConnection.id = id;
-            PgConnection.user_type = "teacher";
             InitializeComponent();
-            if (_is_bank)
+            if (flag)
             {
-                label1.Text = "Банк заданий";
-                Tools.FillDG(dataGridView1, "SELECT * FROM task a1 inner JOIN topic a2 on a1.task_pk = a2.topic_pk inner JOIN discipline a3 on a3.discipline_pk = a2.topic_pk inner JOIN entry_in_study_statement a4 on a3.discipline_pk = a4.entry_in_study_statement_pk inner JOIN study_statement_header a5 on a5.study_statement_header_pk = a4.entry_in_study_statement_pk WHERE a5.teacher_pk =" +  id + ";", "task");
-                name_tab = "task";
+                this.Text = "Банк аттестационных вопросов";
+                button1.Text = "Добавить новый вопрос";
+                Tools.FillDG(dataGridView1, "SELECT * FROM task a1 inner JOIN topic a2 on a1.task_pk = a2.topic_pk inner JOIN discipline a3 on a3.discipline_pk = a2.topic_pk inner JOIN entry_in_study_statement a4 on a3.discipline_pk = a4.entry_in_study_statement_pk inner JOIN study_statement_header a5 on a5.study_statement_header_pk = a4.entry_in_study_statement_pk WHERE a5.teacher_pk =" +  id+";", "task");
+                name_tab = " task";
             }
             else
 
             {
-                label1.Text = "Аттестации";
+                this.Text = "Список аттестаций";
+                button1.Text = "Добавить аттестацию";
                 Tools.FillDG(dataGridView1, "SELECT * FROM statement_header  a1  inner JOIN study_statement_header a2 on a1.statement_header_pk = a2.study_statement_header_pk WHERE a2.teacher_pk = " + id+";", "statement_header");
                 name_tab = "statement_header";
 
             }
 
             //кнопки
-            Tools.AddButtonInGrid(dataGridView1, "Delete", "Удалить");
-            Tools.AddButtonInGrid(dataGridView1, "Change", "Изменить");
+            Tools.AddButtonInGrid(dataGridView1, "Удаление", "Удалить");
+            Tools.AddButtonInGrid(dataGridView1, "Изменение", "Изменить");
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -48,18 +48,22 @@ namespace University.Forms
                            MessageBoxButtons.OKCancel);
                 if (result == DialogResult.OK)
                 {
-                    Tools.Execute("delete from " + name_tab + " where " + name_tab + "_pk = " + Tools.GetId(dataGridView1, e.RowIndex) + ";");
+                    Tools.Execute("delete from " + name_tab + " where " + name_tab + "_pk = " + Tools.GetId(dataGridView1, e.RowIndex));
                     MyRefresh();
+
                 }
 
             }
             else
                  if (dataGridView1.Columns[e.ColumnIndex].Name == "Change")
             {
-                var add = new AddAndChange(true, dataGridView1.DataSource as DataTable,
-                    Tools.GetId(dataGridView1, e.RowIndex));
-                add.ShowDialog();
-                MyRefresh();
+                MessageBox.Show("Дада, сейчас?");
+                var a = ((DataTable)dataGridView1.DataSource).Rows;
+                var b = a[0][0];
+                MessageBox.Show("Ты уверен? " + b);
+                //AddAndChange form = new AddAndChange(true, b.ToString());
+                // form.ShowDialog();
+
             }
 
 

@@ -28,8 +28,8 @@ namespace University
             dataGridView1.Columns.Add(c);
 
             //кнопки
-            Tools.AddButtonInGrid(dataGridView1, "Delete", "Удалить");
-            Tools.AddButtonInGrid(dataGridView1, "Change", "Изменить");
+            Tools.AddButtonInGrid(dataGridView1, "Удаление", "Удалить");
+            Tools.AddButtonInGrid(dataGridView1, "Изменение", "Изменить");
 
             // dataGridView1.Columns.AddRange(new DataGridViewColumn[] { new DataGridViewButtonColumn() });
         }
@@ -49,8 +49,8 @@ namespace University
 
             var add = new AddAndChange(false, dataGridView1.DataSource as DataTable, res);
             add.ShowDialog();
-
-            // Tools.Execute("select * from add_user( " + firstname + " , " + lastname + " , " + patronymic + ", " + login + ", " + password + " , student);");
+       
+           // Tools.Execute("select * from add_user( " + firstname + " , " + lastname + " , " + patronymic + ", " + login + ", " + password + " , student);");
             MyRefresh();
         }
 
@@ -65,7 +65,7 @@ namespace University
                             MessageBoxButtons.OKCancel);
                         if (result == DialogResult.OK)
                         {
-                            Tools.Execute("delete from " + _table_name + " where " + _table_name + "_pk = " + Tools.GetId(dataGridView1, e.RowIndex));
+                            Tools.Execute("delete from "+ _table_name + " where " + _table_name + "_pk = " + Tools.GetId(dataGridView1, e.RowIndex));
                             MyRefresh();
                         }
 
@@ -80,6 +80,7 @@ namespace University
                         MyRefresh();
                         break;
                     }
+
             }
 
         }
