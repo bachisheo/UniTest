@@ -1169,12 +1169,24 @@ CREATE TRIGGER set_time
     ON public.statement_header
     FOR EACH ROW
     EXECUTE FUNCTION public.set_time_trigger();
+
+------------create view
+create or replace view student_view as 
+    select student_pk as id, lastname as lastname, 
+	firstname as firtname, patronymic as patronymic
+    from student;
+select * from student_view;
  
 
 select * from add_speciality('Приборостроение');
 select * from add_study_plan('№3456', 1); 
 select * from add_discipline('Основы программирования');
+select * from add_discipline('Правоведение');
+select * from add_discipline('Безопасность жизнедеятельности');
+select * from add_discipline('Философия');
 select * from add_user('Иван', 'Иванов', 'Иванович', 'vanya91', '1234', 'student');
+select * from add_user('Алевтина', 'Алабаева', 'Александровна', 'alya009', '1234', 'student');
+select * from add_user('Борис', 'Баранов', 'Борисович', 'borisboris', '1234', 'student');
 select * from add_user('Петр', 'Петров', 'Петрович', 'petr91', '1234', 'teacher');
 select * from add_entry_in_study_plan(1, 1);
 select * from add_department('Прикладная математика');

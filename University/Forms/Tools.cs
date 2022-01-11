@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
@@ -8,23 +9,32 @@ namespace University
 {
     public static class Tools
     {
-        private static List<string> _stopWords = new List<string>(){ "login", "_pk", "password" };
+        private static List<string> _stopWords = new List<string>(){ "login", "_pk", "password", "id" };
 
         private static Dictionary<string, string> headers = new Dictionary<string, string>()
         {
             { "firstname", "Имя" }, { "lastname", "Фамилия" }, { "patronymic", "Отчество" }, {"name", "Название"}, {"data", "Время"},
             {"discipline", "Предмет"},  {"number", "Номер"}
         };
-        public static void FillDG(DataGridView dgv, string sql_script, string name)
+
+        public static void FillDG(DataGridView dgv, string sql_script, string table_name)
         {
-            dgv.Rows.Clear();
-            dgv.Columns.Clear();
             PgConnection.Open();
             var cmd = new NpgsqlCommand(sql_script, PgConnection.Instance);
-            DataTable dt = new DataTable(name);
+            DataTable dt = new DataTable(table_name);
             dt.Load(cmd.ExecuteReader());
-            dgv.DataSource = dt;
+            FillDG(dgv, dt);
             cmd.Dispose();
+            PgConnection.Close();
+        }
+
+        public static void FillDG(DataGridView dgv, DataTable dt)
+        {
+            dgv.DataSource = null;
+            dgv.AllowUserToAddRows = false;
+            dgv.Rows.Clear();
+            dgv.Columns.Clear();
+            dgv.DataSource = dt;
             for (int i = 0; i < dt.Columns.Count; i++)
             {
                 string _h;
@@ -36,10 +46,7 @@ namespace University
                         dgv.Columns[i].Visible = false;
                 }
             }
-            cmd.Dispose();
-            PgConnection.Close();
         }
-
         public static DataGridViewButtonColumn AddButtonInGrid(DataGridView dgv, string name, string textForUser)
         {
             DataGridViewButtonColumn b = new DataGridViewButtonColumn();
@@ -50,16 +57,42 @@ namespace University
             return b;
         }
 
-        public static DataTable GetDataTable(string script, string name = "")
+        public static DataTable GetDataTableFromOneObj( string table_name, string param_name, string param_value)
+        {
+            var dt = GetDataTable("select * from " + table_name + " where " + param_name + " = " + param_value);
+            dt.TableName = table_name;
+            return dt;
+        }
+
+        public static DataTable GetDataTable(string script)
         {
             PgConnection.Open();
             var cmd1 = new NpgsqlCommand(script, PgConnection.Instance);
-            DataTable dt1 = new DataTable(name);
+            DataTable dt1 = new DataTable();
             dt1.Load(cmd1.ExecuteReader());
             cmd1.Dispose();
             PgConnection.Close();
             return dt1;
-
         }
+        public static void Execute(string script)
+        {
+            PgConnection.Open();
+            var cmd1 = new NpgsqlCommand(script, PgConnection.Instance);
+            cmd1.ExecuteReader();
+            cmd1.Dispose();
+            PgConnection.Close();
+        }
+        public static int GetId(DataGridView dgv, int entry_number)
+        {
+            var dt = dgv.DataSource as DataTable;
+
+            for (int i = 0; i < dt.Columns.Count; i++)
+            {
+                if (dt.Columns[i].ColumnName == "id")
+                    return (int)dt.Rows[entry_number][i];
+            }
+            throw new Exception("Запись не существует!");
+        }
+
     }
 }

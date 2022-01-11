@@ -17,7 +17,7 @@ namespace University
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Main_first_inpute_form());
+            Application.Run(new TableViewForm());
         }
     }
 }
