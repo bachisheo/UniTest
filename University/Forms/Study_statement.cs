@@ -76,28 +76,19 @@ namespace University.Forms
                        
                         DataTable dt = new DataTable();
                         DataGridView dat = new DataGridView();
-                        PgConnection.Open();
+                      
+                             Tools.FillDG(dat, "select * from result where statement_header_pk = "+Tools.GetId(dataGridView1, e.RowIndex)+";", "");
+                      
 
+                        //var b = a[0][1];
 
-                       int n = Tools.GetId(dataGridView1, e.RowIndex);
-  
-
-                        NpgsqlCommand cmd = new NpgsqlCommand("select * from result where statement_header_pk = "+Tools.GetId(dataGridView1, e.RowIndex)+";", PgConnection.Instance);
-                        dt.Load(cmd.ExecuteReader());
-                        dat.DataSource = dt;
-
-                        var a = ((DataTable)dat.DataSource).Rows;
-                        var b = a[0][1];
-                        dat.Rows.Add(dt);
                         //textBox1.Text = ""+add_or_change; 
 
                         Microsoft.Office.Interop.Excel.Application ExcelApp = new Microsoft.Office.Interop.Excel.Application();
-                        Microsoft.Office.Interop.Excel.Workbook ExcelWorkBook;
-                        Microsoft.Office.Interop.Excel.Worksheet ExcelWorkSheet;
-                        //Книга.
-                        ExcelWorkBook = ExcelApp.Workbooks.Add(System.Reflection.Missing.Value);
-                        //Таблица.
-                        ExcelWorkSheet = (Microsoft.Office.Interop.Excel.Worksheet)ExcelWorkBook.Worksheets.get_Item(1);
+                        Microsoft.Office.Interop.Excel.Workbook  ExcelWorkBook;
+                        Microsoft.Office.Interop.Excel.Worksheet  ExcelWorkSheet;
+                        
+                        
                         /*
                         for (int j = 0; j < dataGridView1.ColumnCount; j++)
                         {
@@ -107,15 +98,21 @@ namespace University.Forms
                         for (int i = 0; i < dat.Rows.Count; i++)
                         {
                             for (int j = 0; j < dat.ColumnCount; j++)
-                            {
-                                ExcelApp.Cells[i + 1, j + 1] = dat.Rows[i].Cells[j].Value.ToString();
+                            {//
+                                 ExcelApp.Cells[i + 1, j + 1] = dat.Rows[i].Cells[j].Value.ToString();
+                                //ExcelApp.Cells[i + 1, j + 1] = a[i][j].ToString();
                             }
                         }
+
+                        //Книга.
+                        ExcelWorkBook = ExcelApp.Workbooks.Add(System.Reflection.Missing.Value);
+                        //Таблица.
+                        ExcelWorkSheet = (Microsoft.Office.Interop.Excel.Worksheet)ExcelWorkBook.Worksheets.get_Item(1);
+                       
                         //Вызываем нашу созданную эксельку.
                         ExcelApp.Visible = true;
                         ExcelApp.UserControl = true;
-                        cmd.Dispose();
-                        PgConnection.Close();
+                       
                         // add.ShowDialog();
                         //MyRefresh();
                         break;
