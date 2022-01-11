@@ -36,7 +36,7 @@ namespace University.Forms
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(255, 58);
+            this.button1.Location = new System.Drawing.Point(255, 87);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(307, 70);
             this.button1.TabIndex = 0;
@@ -47,23 +47,23 @@ namespace University.Forms
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(255, 158);
+            this.button2.Location = new System.Drawing.Point(255, 187);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(307, 70);
             this.button2.TabIndex = 1;
             this.button2.Tag = "comboBox1.SelectedValue.ToString();";
-            this.button2.Text = "Аттестации";
+            this.button2.Text = "Список аттестаций";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(255, 266);
+            this.button3.Location = new System.Drawing.Point(255, 295);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(307, 70);
             this.button3.TabIndex = 2;
             this.button3.Tag = "comboBox1.SelectedValue.ToString();";
-            this.button3.Text = "Ведомости";
+            this.button3.Text = "Экзаменационные ведомости";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
@@ -76,7 +76,7 @@ namespace University.Forms
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Name = "Main_teacher_form";
-            this.Text = "Main_teacher_form";
+            this.Text = "Рабочее пространство преподавателя";
             this.ResumeLayout(false);
 
         }

@@ -19,22 +19,24 @@ namespace University.Forms
             InitializeComponent();
             if (flag)
             {
-                label1.Text = "Банк заданий";
+                this.Text = "Банк аттестационных вопросов";
+                button1.Text = "Добавить новый вопрос";
                 Tools.FillDG(dataGridView1, "SELECT * FROM task a1 inner JOIN topic a2 on a1.task_pk = a2.topic_pk inner JOIN discipline a3 on a3.discipline_pk = a2.topic_pk inner JOIN entry_in_study_statement a4 on a3.discipline_pk = a4.entry_in_study_statement_pk inner JOIN study_statement_header a5 on a5.study_statement_header_pk = a4.entry_in_study_statement_pk WHERE a5.teacher_pk =" +  id+";", "task");
                 name_tab = " task";
             }
             else
 
             {
-                label1.Text = "Аттестации";
+                this.Text = "Список аттестаций";
+                button1.Text = "Добавить аттестацию";
                 Tools.FillDG(dataGridView1, "SELECT * FROM statement_header  a1  inner JOIN study_statement_header a2 on a1.statement_header_pk = a2.study_statement_header_pk WHERE a2.teacher_pk = " + id+";", "statement_header");
                 name_tab = "statement_header";
 
             }
 
             //кнопки
-            Tools.AddButtonInGrid(dataGridView1, "Delete", "Удалить");
-            Tools.AddButtonInGrid(dataGridView1, "Change", "Изменить");
+            Tools.AddButtonInGrid(dataGridView1, "Удаление", "Удалить");
+            Tools.AddButtonInGrid(dataGridView1, "Изменение", "Изменить");
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)

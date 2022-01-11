@@ -47,11 +47,11 @@ namespace University
             // 
             // AddButton
             // 
-            this.AddButton.Location = new System.Drawing.Point(975, 394);
+            this.AddButton.Location = new System.Drawing.Point(81, 12);
             this.AddButton.Name = "AddButton";
-            this.AddButton.Size = new System.Drawing.Size(137, 32);
+            this.AddButton.Size = new System.Drawing.Size(311, 41);
             this.AddButton.TabIndex = 1;
-            this.AddButton.Text = "Добавить";
+            this.AddButton.Text = "Добавить новую запись";
             this.AddButton.UseVisualStyleBackColor = true;
             this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
             // 
@@ -63,7 +63,7 @@ namespace University
             this.Controls.Add(this.AddButton);
             this.Controls.Add(this.dataGridView1);
             this.Name = "TableViewForm";
-            this.Text = "Form1";
+            this.Text = "Добавление и редактирование";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
