@@ -45,17 +45,17 @@ namespace University.Forms
             this.dataGridView1.Size = new System.Drawing.Size(792, 307);
             this.dataGridView1.TabIndex = 0;
             // 
-            // comboBox1
+            // comboBoxDisc
             // 
             this.comboBoxDisc.FormattingEnabled = true;
             this.comboBoxDisc.Location = new System.Drawing.Point(10, 34);
             this.comboBoxDisc.Name = "comboBoxDisc";
-            this.comboBoxDisc.Size = new System.Drawing.Size(129, 24);
+            this.comboBoxDisc.Size = new System.Drawing.Size(294, 24);
             this.comboBoxDisc.TabIndex = 1;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(162, 33);
+            this.button1.Location = new System.Drawing.Point(321, 33);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(61, 24);
             this.button1.TabIndex = 2;
