@@ -12,6 +12,7 @@ namespace University
     public partial class TableViewForm : Form
     {
         private string _cmnd, _view_name = "student_view", _table_name = "student";
+        private string formName = "Студенты";
 
         public void MyRefresh()
         {
@@ -36,11 +37,17 @@ namespace University
         {
             InitializeComponent();
             MyRefresh();
+            this.Text = formName;
         }
 
         private void AddButton_Click(object sender, EventArgs e)
         {
-            var add = new AddAndChange( dataGridView1.DataSource as DataTable);
+            Random rand = new Random();
+            rand.Next();
+            var res = Tools.executeFunction(" select * from add_user('', '',' ', 'user" + rand.Next().ToString() +
+                                    "', '', 'student');");
+
+            var add = new AddAndChange(false, dataGridView1.DataSource as DataTable, res);
             add.ShowDialog();
        
            // Tools.Execute("select * from add_user( " + firstname + " , " + lastname + " , " + patronymic + ", " + login + ", " + password + " , student);");
@@ -60,7 +67,6 @@ namespace University
                         {
                             Tools.Execute("delete from "+ _table_name + " where " + _table_name + "_pk = " + Tools.GetId(dataGridView1, e.RowIndex));
                             MyRefresh();
-
                         }
 
                         break;

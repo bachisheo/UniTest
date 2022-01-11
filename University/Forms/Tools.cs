@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.Runtime.Remoting.Messaging;
 using System.Windows.Forms;
 using Npgsql;
 
@@ -9,12 +10,12 @@ namespace University
 {
     public static class Tools
     {
-        private static List<string> _stopWords = new List<string>(){ "login", "_pk", "password", "id" };
+        private static List<string> _stopWords = new List<string>(){  "_pk", "id" };
 
         private static Dictionary<string, string> headers = new Dictionary<string, string>()
         {
             { "firstname", "Имя" }, { "lastname", "Фамилия" }, { "patronymic", "Отчество" }, {"name", "Название"}, {"data", "Время"},
-            {"discipline", "Предмет"},  {"number", "Номер"}
+            {"discipline", "Предмет"},  {"number", "Номер"},  {"login", "Логин"},  {"password", "Пароль"}
         };
 
         public static void FillDG(DataGridView dgv, string sql_script, string table_name)
@@ -62,6 +63,10 @@ namespace University
             var dt = GetDataTable("select * from " + table_name + " where " + param_name + " = " + param_value);
             dt.TableName = table_name;
             return dt;
+        } 
+        public static void Delete( string table_name, string param_name, string param_value)
+        {
+            Execute("delete from " + table_name + " where " + param_name + " = " + param_value);
         }
 
         public static DataTable GetDataTable(string script)
@@ -74,13 +79,25 @@ namespace University
             PgConnection.Close();
             return dt1;
         }
-        public static void Execute(string script)
+
+        public static int executeFunction(string script)
         {
             PgConnection.Open();
             var cmd1 = new NpgsqlCommand(script, PgConnection.Instance);
-            cmd1.ExecuteReader();
+            var res = cmd1.ExecuteScalar();
             cmd1.Dispose();
             PgConnection.Close();
+            return (int)res;
+        }
+    
+        public static NpgsqlDataReader Execute(string script)
+        {
+            PgConnection.Open();
+            var cmd1 = new NpgsqlCommand(script, PgConnection.Instance);
+            var r = cmd1.ExecuteReader();
+            cmd1.Dispose();
+            PgConnection.Close();
+            return r;
         }
         public static int GetId(DataGridView dgv, int entry_number)
         {

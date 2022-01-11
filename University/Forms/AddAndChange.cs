@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 
 namespace University.Forms
 {
@@ -22,15 +23,12 @@ namespace University.Forms
         }
         public AddAndChange(DataTable dt)
         {
-            InitializeComponent();
             _table_name = dt.TableName.Replace("_view", "");
             _isEdit = false;
-
             var _dt = dt;
-            
             Tools.FillDG(dataGridView1, _dt);
-         
-            for (int i = 0 ; i < dataGridView1.Rows.Count - 1; i++)
+
+            for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)
             {
                 dataGridView1.Rows[i].Visible = false;
             }
@@ -48,7 +46,7 @@ namespace University.Forms
             CancelButton.Enabled = false;
             ActionButton.Enabled = false;
         }
-        
+
 
         public AddAndChange(bool isEdit, DataTable dt, int id)
         {
@@ -60,10 +58,13 @@ namespace University.Forms
             if (isEdit)
             {
                 ActionButton.Text = "Изменить";
+                this.Text = "Изменить запись";
             }
             else
             {
                 ActionButton.Text = "Добавить";
+                this.Text = "Добавить запись";
+
             }
             MyRefresh();
 
@@ -81,33 +82,27 @@ namespace University.Forms
             StringBuilder sb = new StringBuilder();
             var dt = dataGridView1.DataSource as DataTable;
 
-            if (_isEdit)
-            {
                 sb.Append("update " + _table_name + " set ");
                 for (int i = 1; i < dt.Columns.Count; i++)
                 {
                     if (i > 1 && i < dt.Columns.Count) sb.Append(" , ");
                     sb.Append(dt.Columns[i].ColumnName + " = '" + dt.Rows[0][i].ToString() + "' ");
-
                 }
                 sb.Append(" where " + _table_name + "_pk = " + _id.ToString() + ";");
-            }
-            else
-            {
-                Adding();
-                return;
-            }
             Tools.Execute(sb.ToString());
+            if(!_isEdit) this.Close();
             MyRefresh();
         }
 
-        private void Adding()
-        {
-
-        }
         private void CancelButton_Click(object sender, EventArgs e)
         {
-            MyRefresh();
+            if (_isEdit)
+                MyRefresh();
+            else
+            {
+                Tools.Delete("student", "student_pk", _id.ToString());
+                this.Close();
+            }
         }
 
         private void dataGridView1_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
